@@ -1,0 +1,199 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}Listings — Jusco Realtors{% endblock %}
+{% block description %}Homes for sale and to let in Nairobi's prime neighbourhoods.{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 pt-14 pb-10 sm:px-10">
+    <h1 class="font-heading text-[clamp(40px,5vw,64px)] font-semibold uppercase leading-[1.04]">Listings</h1>
+    <p class="mt-3 text-base text-ink/70">Homes for sale and to let across Nairobi's prime neighbourhoods.</p>
+
+    <form id="filters" class="blueprint mt-9 flex flex-wrap items-end gap-x-5 gap-y-4 px-6 py-5" aria-label="Filter listings">
+      <fieldset>
+        <legend class="field-label">Status</legend>
+        <div class="seg">
+          <label class="seg-opt"><input type="radio" name="status" value="" class="sr-only" checked>All</label>
+          <label class="seg-opt"><input type="radio" name="status" value="sale" class="sr-only">For sale</label>
+          <label class="seg-opt"><input type="radio" name="status" value="rent" class="sr-only">To let</label>
+        </div>
+      </fieldset>
+      <div class="flex-[1_1_160px]"><label for="f-area" class="field-label">Neighbourhood</label><select id="f-area" name="area" class="input"><option value="">All neighbourhoods</option><option value="Karen">Karen</option><option value="Runda">Runda</option><option value="Muthaiga">Muthaiga</option><option value="Lavington">Lavington</option><option value="Kitisuru">Kitisuru</option><option value="Gigiri">Gigiri</option><option value="Rosslyn">Rosslyn</option><option value="Westlands">Westlands</option></select></div>
+      <div class="flex-[1_1_140px]"><label for="f-type" class="field-label">Type</label><select id="f-type" name="type" class="input"><option value="">Any type</option><option value="Villa">Villa</option><option value="Townhouse">Townhouse</option><option value="Apartment">Apartment</option></select></div>
+      <div class="flex-[1_1_120px]"><label for="f-beds" class="field-label">Bedrooms</label>
+        <select id="f-beds" name="beds" class="input"><option value="0">Any</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option><option value="6">6+</option></select></div>
+      <div class="flex-[1_1_170px]"><label for="f-sort" class="field-label">Sort by</label>
+        <select id="f-sort" name="sort" class="input"><option value="price-desc">Price, high to low</option><option value="price-asc">Price, low to high</option><option value="beds">Most bedrooms</option></select></div>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </form>
+  </section>
+
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 py-10 sm:px-10">
+    <div class="mb-7 flex flex-wrap items-center justify-between gap-3">
+      <span class="kicker" id="result-count" aria-live="polite">8 homes</span>
+      <button type="button" id="clear-filters" class="btn btn-ghost hidden">Clear filters</button>
+    </div>
+
+    <div id="no-results" class="blueprint hidden px-6 py-12 text-center">
+      <p class="font-heading text-2xl font-semibold uppercase">No homes match these filters</p>
+      <p class="mb-5 mt-2.5 text-[15px] text-ink/70">Some properties are offered privately. Tell me what you're looking for and I'll come back to you.</p>
+      <a href="{% url 'home:contact' %}" class="btn btn-secondary">Send a brief</a>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </div>
+
+    <div id="listing-grid" class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-9">
+      <article class="blueprint flex flex-col" data-listing data-area="Muthaiga" data-type="Villa" data-status="sale" data-beds="7" data-price="420000000">
+        <a href="{% url 'home:property' %}?id=kitanga-residence" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Kitanga Residence, Muthaiga" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Muthaiga · Villa</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Kitanga Residence</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>7 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>8 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>1050 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 420M</span>
+              <span class="tag">For sale</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Runda" data-type="Villa" data-status="sale" data-beds="6" data-price="240000000">
+        <a href="{% url 'home:property' %}?id=mimosa-grove" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Mimosa Grove, Runda" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Runda · Villa</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Mimosa Grove</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>6 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>7 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>780 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 240M</span>
+              <span class="tag">For sale</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Karen" data-type="Villa" data-status="sale" data-beds="5" data-price="185000000">
+        <a href="{% url 'home:property' %}?id=ndovu-house" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Ndovu House, Karen" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Karen · Villa</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Ndovu House</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>5 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>6 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>620 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 185M</span>
+              <span class="tag">For sale</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Rosslyn" data-type="Villa" data-status="sale" data-beds="5" data-price="165000000">
+        <a href="{% url 'home:property' %}?id=riviera-villa" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Riviera Villa, Rosslyn" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Rosslyn · Villa</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Riviera Villa</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>5 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>6 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>590 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 165M</span>
+              <span class="tag">For sale</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Lavington" data-type="Townhouse" data-status="sale" data-beds="4" data-price="78000000">
+        <a href="{% url 'home:property' %}?id=mugumo-court" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Mugumo Court, No. 4, Lavington" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Lavington · Townhouse</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Mugumo Court, No. 4</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>4 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>5 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>380 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 78M</span>
+              <span class="tag">For sale</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Westlands" data-type="Apartment" data-status="sale" data-beds="3" data-price="62000000">
+        <a href="{% url 'home:property' %}?id=loft-penthouse" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Penthouse 21, The Loft, Westlands" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Westlands · Apartment</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Penthouse 21, The Loft</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>3 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>4 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>310 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 62M</span>
+              <span class="tag">For sale</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Kitisuru" data-type="Villa" data-status="rent" data-beds="5" data-price="650000">
+        <a href="{% url 'home:property' %}?id=ridge-house" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Ridge House, Kitisuru" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Kitisuru · Villa</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Ridge House</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>5 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>6 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>560 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 650,000 / mo</span>
+              <span class="tag">To let</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col" data-listing data-area="Gigiri" data-type="Townhouse" data-status="rent" data-beds="4" data-price="480000">
+        <a href="{% url 'home:property' %}?id=embassy-row" class="group flex flex-1 flex-col text-ink">
+          <div class="duotone aspect-[4/3] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Embassy Row Townhouse, Gigiri" class="h-full w-full object-cover" loading="lazy"></div>
+          <div class="flex flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 transition-colors group-hover:bg-accent/5">
+            <span class="kicker">Gigiri · Townhouse</span>
+            <h3 class="font-heading text-2xl font-semibold uppercase leading-tight tracking-wide">Embassy Row Townhouse</h3>
+            <div class="flex gap-4 text-[13px] text-ink/70">
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>4 bed</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="2" x2="22" y1="12" y2="12"/><line x1="7" x2="7" y1="19" y2="21"/><line x1="17" x2="17" y1="19" y2="21"/></svg>5 bath</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>420 m²</span>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
+              <span class="font-heading text-[22px] font-semibold tracking-wide">KES 480,000 / mo</span>
+              <span class="tag">To let</span>
+            </div>
+          </div>
+        </a>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+    </div>
+  </section>
+{% endblock %}

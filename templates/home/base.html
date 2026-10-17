@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+{% include "home/_spinner.html" %}
+
+<header class="sticky top-0 z-30 border-b border-divider bg-paper">
+  <nav class="mx-auto flex max-w-7xl items-center gap-8 px-5 py-3 sm:px-10" aria-label="Main">
+    <a href="{% url 'home:index' %}" class="font-heading text-xl font-semibold uppercase tracking-[0.06em] text-ink">Jusco Realtors</a>
+    <div class="ml-auto hidden items-center gap-6 text-sm md:flex">
+      <a href="{% url 'home:index' %}" class="border-b pb-0.5 {% if active_nav == 'home' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'home' %} aria-current="page"{% endif %}>Home</a>
+      <a href="{% url 'home:listings' %}" class="border-b pb-0.5 {% if active_nav == 'listings' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'listings' %} aria-current="page"{% endif %}>Listings</a>
+      <a href="{% url 'home:neighbourhoods' %}" class="border-b pb-0.5 {% if active_nav == 'neighbourhoods' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'neighbourhoods' %} aria-current="page"{% endif %}>Neighbourhoods</a>
+      <a href="{% url 'home:agent' %}" class="border-b pb-0.5 {% if active_nav == 'about' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'about' %} aria-current="page"{% endif %}>About</a>
+    </div>
+    <a href="{% url 'home:contact' %}" class="btn btn-primary blueprint ml-auto md:ml-0">Book a viewing<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+    <button type="button" class="btn btn-secondary btn-icon md:hidden" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  </nav>
+  <div id="mobile-menu" class="hidden border-t border-divider px-5 md:hidden">
+    <a href="{% url 'home:index' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'home' %}text-accent-700{% else %}text-ink{% endif %}">Home</a>
+    <a href="{% url 'home:listings' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'listings' %}text-accent-700{% else %}text-ink{% endif %}">Listings</a>
+    <a href="{% url 'home:neighbourhoods' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'neighbourhoods' %}text-accent-700{% else %}text-ink{% endif %}">Neighbourhoods</a>
+    <a href="{% url 'home:agent' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'about' %}text-accent-700{% else %}text-ink{% endif %}">About</a>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="border-t border-divider">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-12 gap-y-6 px-5 py-10 sm:px-10">
+    <a href="{% url 'home:index' %}" class="font-heading text-[22px] font-semibold uppercase tracking-[0.06em] text-ink">Jusco Realtors</a>
+    <div class="flex flex-wrap gap-6 text-sm">
+      <a href="{% url 'home:index' %}" class="text-accent-700 hover:text-accent-900">Home</a>
+      <a href="{% url 'home:listings' %}" class="text-accent-700 hover:text-accent-900">Listings</a>
+      <a href="{% url 'home:neighbourhoods' %}" class="text-accent-700 hover:text-accent-900">Neighbourhoods</a>
+      <a href="{% url 'home:agent' %}" class="text-accent-700 hover:text-accent-900">About</a>
+      <a href="{% url 'home:contact' %}" class="text-accent-700 hover:text-accent-900">Book a viewing</a>
+    </div>
+    <p class="text-[13px] text-ink/70">&copy; 2026 Jusco Realtors &middot; Nairobi, Kenya</p>
+  </div>
+</footer>
+{% endblock %}

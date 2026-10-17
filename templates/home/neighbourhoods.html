@@ -1,0 +1,94 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}Neighbourhoods — Jusco Realtors{% endblock %}
+{% block description %}Nairobi neighbourhoods covered by Jusco Realtors.{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 sm:px-10 pb-20 pt-14">
+    <h1 class="font-heading text-[clamp(40px,5vw,64px)] font-semibold uppercase leading-[1.04]">Neighbourhoods</h1>
+    <p class="mt-3 max-w-[60ch] text-base text-ink/70">The parts of Nairobi I know street by street. Select one to see what's currently available there.</p>
+    <div class="mt-10 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-9">
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Karen, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">South-west · approx. 20 km from CBD</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Karen</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Large plots, mature trees and a semi-rural feel near the Ngong Hills and Ngong Road Forest.</p>
+          <a href="{% url 'home:listings' %}?area=Karen" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Runda, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">North · near Gigiri</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Runda</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Gated estates and newer family homes, popular with diplomats and UN staff.</p>
+          <a href="{% url 'home:listings' %}?area=Runda" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Muthaiga, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">North · approx. 6 km from CBD</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Muthaiga</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Nairobi's oldest prestige suburb, with historic houses on large grounds beside Karura Forest.</p>
+          <a href="{% url 'home:listings' %}?area=Muthaiga" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Lavington, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">West · approx. 7 km from CBD</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Lavington</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Leafy and central, with townhouse developments close to well-known schools.</p>
+          <a href="{% url 'home:listings' %}?area=Lavington" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Kitisuru, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">North-west</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Kitisuru</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Ridges and valleys with generous plots and long views, close to Karura and Westlands.</p>
+          <a href="{% url 'home:listings' %}?area=Kitisuru" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Gigiri, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">North · UN complex</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Gigiri</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Home to the UN offices and many embassies, with secure compounds and townhouses.</p>
+          <a href="{% url 'home:listings' %}?area=Gigiri" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Rosslyn, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">North · beside Gigiri</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Rosslyn</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Quiet residential roads near Rosslyn Riviera and several international schools.</p>
+          <a href="{% url 'home:listings' %}?area=Rosslyn" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+      <article class="blueprint flex flex-col">
+        <div class="duotone aspect-[3/2] border-b border-divider"><img src="{% static 'img/photo.jpg' %}" alt="Westlands, Nairobi" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="flex flex-1 flex-col gap-2.5 p-5">
+          <span class="kicker">West · approx. 4 km from CBD</span>
+          <h2 class="font-heading text-[28px] font-semibold uppercase">Westlands</h2>
+          <p class="flex-1 text-[15px] leading-relaxed text-ink/80">Nairobi's busiest mixed-use district, for high-floor apartments near offices and restaurants.</p>
+          <a href="{% url 'home:listings' %}?area=Westlands" class="btn btn-secondary mt-2 self-start">View 1 listing</a>
+        </div>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </article>
+    </div>
+  </section>
+{% endblock %}

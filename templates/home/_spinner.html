@@ -1,0 +1,7 @@
+<style>
+#page-spinner{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgb(255 255 255/.92);opacity:1;transition:opacity .3s}
+#page-spinner.done{opacity:0;pointer-events:none}
+.spinner-ring{width:48px;height:48px;border:4px solid #e5e5e5;border-top-color:#B22222;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+<div id="page-spinner"><div class="spinner-ring"></div></div>

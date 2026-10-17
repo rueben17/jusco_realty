@@ -1,4 +1,4 @@
-# Jusco Realty
+# Jusco Realtors
 
 Property management and listings platform built with Django.
 

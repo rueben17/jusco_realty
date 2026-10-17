@@ -1,0 +1,58 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}About Justin Amenya — Jusco Realtors{% endblock %}
+{% block description %}Principal agent at Jusco Realtors, Nairobi.{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 sm:px-10 pt-14 pb-14 flex flex-wrap items-start gap-14">
+    <div class="blueprint duotone aspect-[4/5] flex-[0_1_380px]"><img src="{% static 'img/photo.jpg' %}" alt="Portrait of Justin Amenya" class="h-full w-full object-cover"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>
+    <div class="min-w-0 flex-[1_1_420px]">
+      <span class="kicker">Principal agent</span>
+      <h1 class="mt-2.5 font-heading text-[clamp(44px,6vw,80px)] font-semibold uppercase leading-[1.02]">Justin Amenya</h1>
+      <p class="mt-7 max-w-[58ch] text-[17px] leading-[1.65]">I founded Jusco Realtors to work the way I'd want an agent to work for me: a few homes at a time, honest pricing advice, and one person who answers the phone. I handle sales and lettings of family homes and apartments across Nairobi's western and northern suburbs.</p>
+      <p class="mt-4 max-w-[58ch] text-[17px] leading-[1.65] text-ink/80">Buyers from abroad can view by video call first. I coordinate land searches, valuers and advocates so the paperwork moves at the same pace as the deal.</p>
+      <div class="blueprint mt-10">
+        <table class="w-full">
+          <tbody>
+            <tr class="border-b border-ink/[0.08] last:border-0"><th scope="row" class="w-[38%] px-5 py-3.5 text-left align-top text-sm font-normal text-ink/70">Services</th><td class="px-5 py-3.5 text-[15px]">Sales, lettings, pricing advice</td></tr>
+            <tr class="border-b border-ink/[0.08] last:border-0"><th scope="row" class="w-[38%] px-5 py-3.5 text-left align-top text-sm font-normal text-ink/70">Neighbourhoods</th><td class="px-5 py-3.5 text-[15px]">Karen, Runda, Muthaiga, Lavington, Kitisuru, Gigiri, Rosslyn, Westlands</td></tr>
+            <tr class="border-b border-ink/[0.08] last:border-0"><th scope="row" class="w-[38%] px-5 py-3.5 text-left align-top text-sm font-normal text-ink/70">Languages</th><td class="px-5 py-3.5 text-[15px]">English, Kiswahili</td></tr>
+            <tr class="border-b border-ink/[0.08] last:border-0"><th scope="row" class="w-[38%] px-5 py-3.5 text-left align-top text-sm font-normal text-ink/70">Registration</th><td class="px-5 py-3.5 text-[15px]">Estate Agents Registration Board, No. 0000</td></tr>
+          </tbody>
+        </table>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 sm:px-10 py-14">
+    <span class="kicker">How I work</span>
+    <div class="mt-3 mb-9 h-px bg-divider"></div>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-9">
+      <div class="blueprint p-6">
+        <span class="text-[13px] font-semibold tracking-[0.08em] text-accent-700">01</span>
+        <h2 class="mt-2.5 font-heading text-2xl font-semibold uppercase">The brief</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink/80">We meet, in person or on a call, to agree budget, neighbourhoods, schools and timing. Sellers get a written price opinion based on recent comparable sales.</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      <div class="blueprint p-6">
+        <span class="text-[13px] font-semibold tracking-[0.08em] text-accent-700">02</span>
+        <h2 class="mt-2.5 font-heading text-2xl font-semibold uppercase">Viewings</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink/80">I shortlist homes against the brief, including some not advertised publicly, and accompany every viewing myself.</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      <div class="blueprint p-6">
+        <span class="text-[13px] font-semibold tracking-[0.08em] text-accent-700">03</span>
+        <h2 class="mt-2.5 font-heading text-2xl font-semibold uppercase">Offer to keys</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink/80">I negotiate the offer, then coordinate the land search, valuation and both advocates through to completion and handover.</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 sm:px-10 py-14 flex flex-wrap items-center justify-between gap-6">
+    <h2 class="font-heading text-[clamp(28px,3vw,40px)] font-semibold uppercase leading-tight">Looking to buy, sell or let?</h2>
+    <a href="{% url 'home:contact' %}" class="btn btn-primary blueprint">Book a viewing<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+  </section>
+{% endblock %}

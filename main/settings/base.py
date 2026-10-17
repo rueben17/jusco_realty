@@ -1,5 +1,5 @@
 """
-Django settings for Jusco Realty.
+Django settings for Jusco Realtors.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/5.2/topics/settings/
