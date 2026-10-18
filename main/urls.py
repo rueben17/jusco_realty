@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps.views import sitemap as django_sitemap
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,6 +10,13 @@ from apps.home.sitemaps import StaticSitemap
 sitemaps = {
     "static": StaticSitemap,
 }
+
+
+def sitemap(request, **kwargs):
+    response = django_sitemap(request, **kwargs)
+    del response["X-Robots-Tag"]
+    return response
+
 
 urlpatterns = [
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
