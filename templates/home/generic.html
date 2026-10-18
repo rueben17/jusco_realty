@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %}{{ page_title }} — Jusco Realtors{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+  <section class="mx-auto w-full max-w-7xl bg-white px-5 sm:px-10 pb-20 pt-14">
+    <span class="kicker">{{ page_kicker }}</span>
+    <h1 class="mt-2.5 font-heading text-[clamp(40px,5vw,64px)] font-semibold uppercase leading-[1.04]">{{ page_title }}</h1>
+    <p class="mt-3 max-w-[60ch] text-base text-ink/70">{{ page_description }}</p>
+
+    {% if page_features %}
+    <div class="mt-12 grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-9">
+      {% for feature in page_features %}
+      <div class="blueprint p-6">
+        <span class="text-[13px] font-semibold tracking-[0.08em] text-accent-700">{{ feature.number }}</span>
+        <h2 class="mt-2.5 font-heading text-2xl font-semibold uppercase">{{ feature.title }}</h2>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink/80">{{ feature.text }}</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mt-14 flex flex-wrap items-center gap-6">
+      <a href="{% url 'home:contact' %}" class="btn btn-primary blueprint">Book a viewing<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+      <a href="{% url 'home:listings' %}" class="btn btn-secondary">Browse all listings</a>
+    </div>
+  </section>
+{% endblock %}

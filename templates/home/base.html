@@ -7,18 +7,108 @@
 <header class="sticky top-0 z-30 border-b border-divider bg-paper">
   <nav class="mx-auto flex max-w-7xl items-center gap-8 px-5 py-3 sm:px-10" aria-label="Main">
     <a href="{% url 'home:index' %}" class="font-heading text-xl font-semibold uppercase tracking-[0.06em] text-ink">Jusco Realtors</a>
-    <div class="ml-auto hidden items-center gap-6 text-sm md:flex">
+
+    <!-- Desktop nav -->
+    <div class="ml-auto hidden items-center gap-6 text-sm lg:flex">
       <a href="{% url 'home:index' %}" class="border-b pb-0.5 {% if active_nav == 'home' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'home' %} aria-current="page"{% endif %}>Home</a>
-      <a href="{% url 'home:listings' %}" class="border-b pb-0.5 {% if active_nav == 'listings' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'listings' %} aria-current="page"{% endif %}>Listings</a>
+
+      <!-- Buy dropdown -->
+      <div class="group/buy relative">
+        <a href="{% url 'home:buy' %}" class="flex items-center gap-1 border-b pb-0.5 {% if active_nav == 'buy' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}">Buy<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover/buy:visible group-hover/buy:opacity-100">
+          <div class="min-w-[220px] border border-divider bg-white py-2 shadow-lg">
+            <a href="{% url 'home:buy' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Property for sale</a>
+            <a href="{% url 'home:buy_developments' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">New developments</a>
+            <a href="{% url 'home:buy_commercial' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Commercial property</a>
+            <a href="{% url 'home:buy_land' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Vacant land</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rent dropdown -->
+      <div class="group/rent relative">
+        <a href="{% url 'home:rent' %}" class="flex items-center gap-1 border-b pb-0.5 {% if active_nav == 'rent' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}">Rent<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover/rent:visible group-hover/rent:opacity-100">
+          <div class="min-w-[220px] border border-divider bg-white py-2 shadow-lg">
+            <a href="{% url 'home:rent' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Property to rent</a>
+            <a href="{% url 'home:rent_houses' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Houses</a>
+            <a href="{% url 'home:rent_apartments' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Apartments / Flats</a>
+            <a href="{% url 'home:rent_commercial' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Commercial property</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services dropdown -->
+      <div class="group/svc relative">
+        <a href="{% url 'home:services' %}" class="flex items-center gap-1 border-b pb-0.5 {% if active_nav == 'services' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}">Services<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="invisible absolute left-0 top-full pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover/svc:visible group-hover/svc:opacity-100">
+          <div class="min-w-[240px] border border-divider bg-white py-2 shadow-lg">
+            <a href="{% url 'home:services' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">All services</a>
+            <div class="mx-5 my-1 h-px bg-divider"></div>
+            <a href="{% url 'home:services_sales' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Residential sales</a>
+            <a href="{% url 'home:services_letting' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Residential letting</a>
+            <a href="{% url 'home:services_management' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Property management</a>
+            <div class="mx-5 my-1 h-px bg-divider"></div>
+            <a href="{% url 'home:services_commercial_sales' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Commercial sales</a>
+            <a href="{% url 'home:services_commercial_leasing' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Commercial leasing</a>
+            <a href="{% url 'home:services_advisory' %}" class="block px-5 py-2 text-ink hover:bg-accent/5 hover:text-accent-700">Property advisory</a>
+          </div>
+        </div>
+      </div>
+
       <a href="{% url 'home:neighbourhoods' %}" class="border-b pb-0.5 {% if active_nav == 'neighbourhoods' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'neighbourhoods' %} aria-current="page"{% endif %}>Neighbourhoods</a>
       <a href="{% url 'home:agent' %}" class="border-b pb-0.5 {% if active_nav == 'about' %}border-accent text-accent-700{% else %}border-transparent text-ink hover:text-accent-700{% endif %}"{% if active_nav == 'about' %} aria-current="page"{% endif %}>About</a>
     </div>
-    <a href="{% url 'home:contact' %}" class="btn btn-primary blueprint ml-auto md:ml-0">Book a viewing<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
-    <button type="button" class="btn btn-secondary btn-icon md:hidden" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+
+    <a href="{% url 'home:contact' %}" class="btn btn-primary blueprint ml-auto lg:ml-0">Book a viewing<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+    <button type="button" class="btn btn-secondary btn-icon lg:hidden" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
   </nav>
-  <div id="mobile-menu" class="hidden border-t border-divider px-5 md:hidden">
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-divider px-5 pb-4 lg:hidden">
     <a href="{% url 'home:index' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'home' %}text-accent-700{% else %}text-ink{% endif %}">Home</a>
-    <a href="{% url 'home:listings' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'listings' %}text-accent-700{% else %}text-ink{% endif %}">Listings</a>
+
+    <div class="border-b border-divider">
+      <button type="button" class="flex w-full items-center justify-between py-3 text-base font-semibold {% if active_nav == 'buy' %}text-accent-700{% else %}text-ink{% endif %}" data-mob-toggle="mob-buy">Buy<svg class="h-4 w-4 transition-transform" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div id="mob-buy" class="hidden pb-3 pl-4">
+        <a href="{% url 'home:buy' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Property for sale</a>
+        <a href="{% url 'home:buy_developments' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">New developments</a>
+        <a href="{% url 'home:buy_commercial' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Commercial property</a>
+        <a href="{% url 'home:buy_land' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Vacant land</a>
+      </div>
+    </div>
+
+    <div class="border-b border-divider">
+      <button type="button" class="flex w-full items-center justify-between py-3 text-base font-semibold {% if active_nav == 'rent' %}text-accent-700{% else %}text-ink{% endif %}" data-mob-toggle="mob-rent">Rent<svg class="h-4 w-4 transition-transform" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div id="mob-rent" class="hidden pb-3 pl-4">
+        <a href="{% url 'home:rent' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Property to rent</a>
+        <a href="{% url 'home:rent_houses' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Houses</a>
+        <a href="{% url 'home:rent_apartments' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Apartments / Flats</a>
+        <a href="{% url 'home:rent_commercial' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Commercial property</a>
+      </div>
+    </div>
+
+    <div class="border-b border-divider">
+      <button type="button" class="flex w-full items-center justify-between py-3 text-base font-semibold {% if active_nav == 'services' %}text-accent-700{% else %}text-ink{% endif %}" data-mob-toggle="mob-services">Services<svg class="h-4 w-4 transition-transform" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div id="mob-services" class="hidden pb-3 pl-4">
+        <a href="{% url 'home:services' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">All services</a>
+        <a href="{% url 'home:services_sales' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Residential sales</a>
+        <a href="{% url 'home:services_letting' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Residential letting</a>
+        <a href="{% url 'home:services_management' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Property management</a>
+        <a href="{% url 'home:services_commercial_sales' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Commercial sales</a>
+        <a href="{% url 'home:services_commercial_leasing' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Commercial leasing</a>
+        <a href="{% url 'home:services_advisory' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Property advisory</a>
+      </div>
+    </div>
+
+    <div class="border-b border-divider">
+      <button type="button" class="flex w-full items-center justify-between py-3 text-base font-semibold {% if active_nav == 'contact' %}text-accent-700{% else %}text-ink{% endif %}" data-mob-toggle="mob-contact">Contact us<svg class="h-4 w-4 transition-transform" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+      <div id="mob-contact" class="hidden pb-3 pl-4">
+        <a href="{% url 'home:contact' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Book a viewing</a>
+        <a href="{% url 'home:agent' %}" class="block py-2 text-[15px] text-ink hover:text-accent-700">Meet the agent</a>
+      </div>
+    </div>
+
     <a href="{% url 'home:neighbourhoods' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'neighbourhoods' %}text-accent-700{% else %}text-ink{% endif %}">Neighbourhoods</a>
     <a href="{% url 'home:agent' %}" class="block border-b border-divider py-3 text-base {% if active_nav == 'about' %}text-accent-700{% else %}text-ink{% endif %}">About</a>
   </div>
@@ -29,16 +119,53 @@
 </main>
 
 <footer class="border-t border-divider">
-  <div class="mx-auto flex max-w-7xl flex-wrap items-baseline justify-between gap-x-12 gap-y-6 px-5 py-10 sm:px-10">
-    <a href="{% url 'home:index' %}" class="font-heading text-[22px] font-semibold uppercase tracking-[0.06em] text-ink">Jusco Realtors</a>
-    <div class="flex flex-wrap gap-6 text-sm">
-      <a href="{% url 'home:index' %}" class="text-accent-700 hover:text-accent-900">Home</a>
-      <a href="{% url 'home:listings' %}" class="text-accent-700 hover:text-accent-900">Listings</a>
-      <a href="{% url 'home:neighbourhoods' %}" class="text-accent-700 hover:text-accent-900">Neighbourhoods</a>
-      <a href="{% url 'home:agent' %}" class="text-accent-700 hover:text-accent-900">About</a>
-      <a href="{% url 'home:contact' %}" class="text-accent-700 hover:text-accent-900">Book a viewing</a>
+  <div class="mx-auto max-w-7xl px-5 py-14 sm:px-10">
+    <div class="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-4">
+      <!-- Looking to -->
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[0.08em] text-ink">Looking to</h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li><a href="{% url 'home:buy' %}" class="text-ink/70 hover:text-accent-700">Buy property</a></li>
+          <li><a href="{% url 'home:rent' %}" class="text-ink/70 hover:text-accent-700">Rent property</a></li>
+          <li><a href="{% url 'home:services_letting' %}" class="text-ink/70 hover:text-accent-700">Sell or let your home</a></li>
+          <li><a href="{% url 'home:listings' %}" class="text-ink/70 hover:text-accent-700">Browse listings</a></li>
+          <li><a href="{% url 'home:contact' %}" class="text-ink/70 hover:text-accent-700">Contact us</a></li>
+        </ul>
+      </div>
+      <!-- About us -->
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[0.08em] text-ink">About us</h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li><a href="{% url 'home:agent' %}" class="text-ink/70 hover:text-accent-700">Justin Amenya</a></li>
+          <li><a href="{% url 'home:services' %}" class="text-ink/70 hover:text-accent-700">Services</a></li>
+          <li><a href="{% url 'home:neighbourhoods' %}" class="text-ink/70 hover:text-accent-700">Neighbourhoods</a></li>
+        </ul>
+      </div>
+      <!-- Info -->
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[0.08em] text-ink">Info</h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li><a href="{% url 'home:privacy' %}" class="text-ink/70 hover:text-accent-700">Privacy policy</a></li>
+          <li><a href="{% url 'home:terms' %}" class="text-ink/70 hover:text-accent-700">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+      <!-- Connect -->
+      <div>
+        <h3 class="text-[13px] font-semibold uppercase tracking-[0.08em] text-ink">Connect</h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener" class="text-ink/70 hover:text-accent-700">Facebook</a></li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener" class="text-ink/70 hover:text-accent-700">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="text-ink/70 hover:text-accent-700">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener" class="text-ink/70 hover:text-accent-700">YouTube</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="text-[13px] text-ink/70">&copy; 2026 Jusco Realtors &middot; Nairobi, Kenya</p>
+    <div class="mt-14 flex flex-wrap items-baseline justify-between gap-x-12 gap-y-4 border-t border-divider pt-8">
+      <a href="{% url 'home:index' %}" class="font-heading text-[22px] font-semibold uppercase tracking-[0.06em] text-ink">Jusco Realtors</a>
+      <p class="text-[13px] text-ink/70">&copy; 2026 Jusco Realtors &middot; Nairobi, Kenya</p>
+    </div>
   </div>
 </footer>
+
+<script src="{% static 'js/site.js' %}"></script>
 {% endblock %}

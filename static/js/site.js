@@ -8,6 +8,18 @@
     toggle.setAttribute('aria-expanded', String(open));
   });
 
+  // Mobile dropdown accordions
+  var mobToggles = document.querySelectorAll('[data-mob-toggle]');
+  Array.prototype.forEach.call(mobToggles, function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = document.getElementById(btn.getAttribute('data-mob-toggle'));
+      if (!panel) return;
+      var open = panel.classList.toggle('hidden') === false;
+      var chevron = btn.querySelector('svg');
+      if (chevron) chevron.style.transform = open ? 'rotate(180deg)' : '';
+    });
+  });
+
   // Listing filters (listings.html). Cards carry data-area/-type/-status/-beds/-price.
   var filters = document.getElementById('filters');
   var grid = document.getElementById('listing-grid');
